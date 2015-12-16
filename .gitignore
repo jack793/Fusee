@@ -1,0 +1,14 @@
+## Core latex/pdflatex auxiliary files:
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+*.gz
+*.out
+*.toc
+
+## Intermediate documents:
+*.dvi
+*.pdf
+
