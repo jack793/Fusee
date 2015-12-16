@@ -12,3 +12,7 @@
 *.dvi
 *.pdf
 
+## Core Qt project files:
+*.pro
+*.user
+
