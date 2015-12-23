@@ -15,4 +15,5 @@
 ## Core Qt project files:
 *.pro
 *.user
+*.swo
 
