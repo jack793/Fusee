@@ -4,7 +4,7 @@
 
 #include <QString>
 
-class med: public newbie
+class Med: public Newbie
 {};
 
 #endif

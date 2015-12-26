@@ -1,0 +1,125 @@
+\documentclass{article}
+
+
+\usepackage[english,italian]{babel} %lingue utilizzabili
+\usepackage{graphicx}
+\usepackage{fancyhdr} %per intestaz e piè di pagina
+
+
+\usepackage[utf8]{inputenc} %codifica e input
+
+\usepackage{hyperref} %indice linkato ai paragrafi di riferimento
+\hypersetup{
+  colorlinks,
+  citecolor=gray,
+  filecolor=brown,
+  linkcolor=black,
+  urlcolor=cyan
+}
+
+\usepackage{parcolumns} %testo affiancato in colonna
+
+\usepackage{listings} %Per inserire codice
+\usepackage[usenames]{color} %Per permettere la colorazione dei caratteri 
+
+\usepackage[a4paper,top=3cm,bottom=2cm,left=2cm,right=2cm] {geometry} %imposta pagina formato A4 e setta margini a piacimento
+\usepackage[pdftex]{lscape} %per settare pagine in landscape
+
+\renewcommand{\familydefault}{\sfdefault}   %mette tutto il carattere con uno stile ''grazioso'' <-----------------------------------molto bello
+
+\definecolor{editorGray}{rgb}{0.95, 0.95, 0.95}
+\definecolor{editorOrange}{rgb}{1, 0.5, 0} % #FF7F00 -> rgb(239, 169, 0)
+\definecolor{editorGreen}{rgb}{0, 0.6, 0} % #007C00 -> rgb(0, 124, 0)
+
+
+
+
+%personalizzazione classe per il codice SQL
+\lstnewenvironment{sql}[1][] 
+{\lstset{basicstyle=\scriptstyle \ttfamily, columns=fullflexible, keywordstyle=\color{blue}\bfseries, ndkeywordstyle=\color{blue}\bfseries , ndkeywords={references}, numberstyle=\color{red}, commentstyle=\color{editorGreen}, showstringspaces=false, stringstyle=\color{editorOrange},
+language=SQL, basicstyle=\small,
+numbers=left, numberstyle=\tiny,
+tabsize=2, stepnumber=10, numbersep=5pt, breaklines=true, frame=single, rulecolor=\color{black}, #1}}
+{\lstset {language=SQL,morekeywords={INT,CHAR,varchar,smallint,numeric}}}{}
+
+
+%personalizzazione classe per il codice HTML
+\lstnewenvironment{html}[1][] 
+{\lstset{basicstyle=\scriptstyle \ttfamily, columns=fullflexible,
+keywordstyle=\color{blue}\bfseries, ndkeywords={content,=,charset=, id=, width=, height=},	 ndkeywordstyle=\color{editorGreen}\bfseries , numberstyle=\color{red} commentstyle=\color{red}, showstringspaces=false, stringstyle=\color{editorOrange},
+language=HTML, basicstyle=\small,
+numbers=left, numberstyle=\tiny,
+tabsize=2, stepnumber=10, numbersep=5pt, breaklines=true, frame=single, rulecolor=\color{black}, #1}}{}
+
+%personalizzazione classe per il codice PERL
+\lstnewenvironment{perl}[1][] 
+{\lstset{basicstyle=\scriptstyle \ttfamily, columns=fullflexible,
+keywordstyle=\color{blue}\bfseries, ndkeywords={content,=,charset=, id=, width=, height=},	 ndkeywordstyle=\color{editorGreen}\bfseries , numberstyle=\color{red} commentstyle=\color{red}, showstringspaces=false, stringstyle=\color{editorGreen},
+language=PHP, basicstyle=\small,
+numbers=left, numberstyle=\tiny,
+tabsize=2, stepnumber=10, numbersep=5pt, breaklines=true, frame=single, rulecolor=\color{black}, #1}}{}
+
+
+
+
+
+\begin{document}
+
+\begin{figure}
+\centering
+\includegraphics[angle=0,scale=.30]{LOGO.png}
+\end{figure} 
+
+
+\title{ \textbf{\Huge Programmazione ad oggetti}\vspace{0.7cm} \\ {\Huge Relazione del progetto} \vspace{0.3cm} \\ {\Large Anno accademico 2015/2016} }
+%\date{}
+ 
+\author{\textbf{Zecchin Giacomo (1070122)}}
+
+\maketitle
+\thispagestyle{empty}
+
+
+%da qui stile intestazione e piè di pagina cosi definiti
+\pagestyle{fancy}
+\lhead{}
+\lfoot{\emph{\large Fusee}} 
+\cfoot{}
+\rfoot{Pagina: \thepage~di 20}
+\renewcommand{\footrulewidth}{0.5pt}
+%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\tableofcontents %CREA INDICE
+
+
+
+\newpage
+
+\section{Abstract}
+
+%\selectlanguage{italian}	%%%%inserirlo causerebbe errore in compilazione per lettere accentate-->non risolto
+
+
+	
+%per inserire un'immagine
+%\begin{landscape}
+%\begin{figure}
+%\subsection{Schema E-R iniziale del database}
+%\centering
+%\includegraphics[angle=0,scale=.40]{projBasi.jpg}
+%\hspace{1in}
+%\label{schema}
+%\caption{schema E-R}
+%\end{figure}
+%\end{landscape}
+
+
+
+
+
+
+
+
+
+
+\end{document}

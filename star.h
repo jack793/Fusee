@@ -4,7 +4,7 @@
 
 #include <QString>
 
-class star: public pro
+class Star: public Pro
 {};
 
 #endif

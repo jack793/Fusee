@@ -4,10 +4,10 @@
 
 #include <QString>
 
-class user: public profile
+class User: public Profile
 {
 public:
-    user( const QString &) = 0;
-    virtual ~user();
+    User( const QString &) = 0;
+    virtual ~User();
 };
 #endif //USER_H

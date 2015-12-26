@@ -4,10 +4,11 @@
 
 #include <QString>
 
-class club: public profile
+//Club classe virtuale
+class Club: public Profile
 {
 public:
-    club( const QString &) = 0;
-    virtual ~club();
+    Club( const QString &) = 0;
+    virtual ~Club();
 };
 #endif //CLUB_H
