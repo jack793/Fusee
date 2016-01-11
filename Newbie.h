@@ -5,7 +5,9 @@
 #include <QString>
 
 class Newbie: public User
-{};
+{
+    
+};
 
 #endif
 

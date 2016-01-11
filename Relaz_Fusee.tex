@@ -83,10 +83,12 @@ tabsize=2, stepnumber=10, numbersep=5pt, breaklines=true, frame=single, rulecolo
 %da qui stile intestazione e piè di pagina cosi definiti
 \pagestyle{fancy}
 \lhead{}
-\lfoot{\emph{\large Fusee}} 
 \cfoot{}
 \rfoot{Pagina: \thepage~di 20}
+\fancyfoot[L]{ % right
+   \includegraphics[scale=0.05]{leftfoot.png}}
 \renewcommand{\footrulewidth}{0.5pt}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%
 
 \tableofcontents %CREA INDICE

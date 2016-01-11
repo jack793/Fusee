@@ -4,12 +4,14 @@
 
 int main(int argc, char *argv[])
 {
+    //La classe QApplication controlla il flusso di esecuzione della GUI    
+	QApplication Fusee(argc, argv);
 
-	QApplication a(argc, argv);
+    //Finestra Principale    
+    MainWindow mainWindow;
 
-    MainWindow w;
-
-    return a.exec();
+    //Il main passa il controllo a QT    
+    return mainWindow.exec();
 
 }
 
