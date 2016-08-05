@@ -1,9 +1,13 @@
-\documentclass{article}
+\documentclass[10pt,a4paper,openany]{article}
 
 
 \usepackage[english,italian]{babel} %lingue utilizzabili
+
+%PER GRAFICA
 \usepackage{graphicx}
 \usepackage{fancyhdr} %per intestaz e piè di pagina
+\usepackage{subfig}
+\usepackage{float}
 
 
 \usepackage[utf8]{inputenc} %codifica e input
@@ -17,6 +21,8 @@
   urlcolor=cyan
 }
 
+\usepackage{lastpage} %per sapere il numero di pagine totali
+
 \usepackage{parcolumns} %testo affiancato in colonna
 
 \usepackage{listings} %Per inserire codice
@@ -25,7 +31,7 @@
 \usepackage[a4paper,top=3cm,bottom=2cm,left=2cm,right=2cm] {geometry} %imposta pagina formato A4 e setta margini a piacimento
 \usepackage[pdftex]{lscape} %per settare pagine in landscape
 
-\renewcommand{\familydefault}{\sfdefault}   %mette tutto il carattere con uno stile ''grazioso'' <-----------------------------------molto bello
+\renewcommand{\familydefault}{\sfdefault}   %mette tutto il carattere con uno stile ''grazioso''
 
 \definecolor{editorGray}{rgb}{0.95, 0.95, 0.95}
 \definecolor{editorOrange}{rgb}{1, 0.5, 0} % #FF7F00 -> rgb(239, 169, 0)
@@ -34,13 +40,13 @@
 
 
 
-%personalizzazione classe per il codice SQL
-\lstnewenvironment{sql}[1][] 
+%personalizzazione classe per il codice XML
+\lstnewenvironment{xml}[1][] 
 {\lstset{basicstyle=\scriptstyle \ttfamily, columns=fullflexible, keywordstyle=\color{blue}\bfseries, ndkeywordstyle=\color{blue}\bfseries , ndkeywords={references}, numberstyle=\color{red}, commentstyle=\color{editorGreen}, showstringspaces=false, stringstyle=\color{editorOrange},
-language=SQL, basicstyle=\small,
+language=XML, basicstyle=\small,
 numbers=left, numberstyle=\tiny,
 tabsize=2, stepnumber=10, numbersep=5pt, breaklines=true, frame=single, rulecolor=\color{black}, #1}}
-{\lstset {language=SQL,morekeywords={INT,CHAR,varchar,smallint,numeric}}}{}
+{\lstset {language=XML,morekeywords={xml}}}{}
 
 
 %personalizzazione classe per il codice HTML
@@ -51,8 +57,8 @@ language=HTML, basicstyle=\small,
 numbers=left, numberstyle=\tiny,
 tabsize=2, stepnumber=10, numbersep=5pt, breaklines=true, frame=single, rulecolor=\color{black}, #1}}{}
 
-%personalizzazione classe per il codice PERL
-\lstnewenvironment{perl}[1][] 
+%personalizzazione classe per il codice PHP
+\lstnewenvironment{php}[1][] 
 {\lstset{basicstyle=\scriptstyle \ttfamily, columns=fullflexible,
 keywordstyle=\color{blue}\bfseries, ndkeywords={content,=,charset=, id=, width=, height=},	 ndkeywordstyle=\color{editorGreen}\bfseries , numberstyle=\color{red} commentstyle=\color{red}, showstringspaces=false, stringstyle=\color{editorGreen},
 language=PHP, basicstyle=\small,
@@ -71,7 +77,7 @@ tabsize=2, stepnumber=10, numbersep=5pt, breaklines=true, frame=single, rulecolo
 \end{figure} 
 
 
-\title{ \textbf{\Huge Programmazione ad oggetti}\vspace{0.7cm} \\ {\Huge Relazione del progetto} \vspace{0.3cm} \\ {\Large Anno accademico 2015/2016} }
+\title{ \textbf{\huge PROGRAMMAZIONE AD OGGETTI}\vspace{0.7cm} \\ {\Huge Relazione del progetto} \vspace{0.3cm} \\ {\Large Anno accademico 2015/2016} }
 %\date{}
  
 \author{\textbf{Zecchin Giacomo (1070122)}}
@@ -83,21 +89,24 @@ tabsize=2, stepnumber=10, numbersep=5pt, breaklines=true, frame=single, rulecolo
 %da qui stile intestazione e piè di pagina cosi definiti
 \pagestyle{fancy}
 \lhead{}
-\cfoot{}
-\rfoot{Pagina: \thepage~di 20}
-\fancyfoot[L]{ % right
-   \includegraphics[scale=0.05]{leftfoot.png}}
+\rfoot{\vspace {1pt} Relazione del progetto}
+\cfoot{\vspace{1pt} Pagina: \thepage\ di \pageref{LastPage}}
+\fancyfoot[L]
+	{\vspace{1pt}
+   		\hyperref[sec:index] {\includegraphics[scale=0.05]{leftfoot.png}} %icona linkata all'index
+	 }
 \renewcommand{\footrulewidth}{0.5pt}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%
 
-\tableofcontents %CREA INDICE
+\tableofcontents \label{sec:index} %CREA INDICE LINKABILE
 
 
 
 \newpage
 
 \section{Abstract}
+
 
 %\selectlanguage{italian}	%%%%inserirlo causerebbe errore in compilazione per lettere accentate-->non risolto
 
