@@ -6,12 +6,12 @@
 class Residenza{
 private:
     QString regione;
-    QString paese;
+    QString indirizzo;
 public:
     Residenza(const QString& r="", const QString& p="");
     
     QString getRegione() const;
-    QString getPaese() const;
+    QString getIndirizzo() const;
     
     static Residenza readResidenza(QXmlStreamReader& );
 };
