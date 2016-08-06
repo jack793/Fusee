@@ -4,8 +4,6 @@
 #include<QDate>
 #include<QString>
 
-#include<MODEL/USER_DATA/Residenza.h>
-
 class Info1{
 private:
     QString nome;
