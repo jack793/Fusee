@@ -1,16 +1,15 @@
 #ifndef PROFILO_H
 #define PROFILO_H
 
-#include<UDATA/info1.h>
-#include<UDATA/info2.h>
-#include<UDATA/info3.h>
+#include<MODEL/USER_DATA/Info1.h>
+#include<MODEL/USER_DATA/Info2.h>
 
 class Profilo{
 private:
     Info1 base;
     Info2 lavorative;
 public:
-    Profilo(const Info1& i1, const Info2& i2, const Info3& i3);
+    Profilo(const Info1& i1, const Info2& i2);
     const Info1& getInfo1() const;
     const Info2& getInfo2() const;
 

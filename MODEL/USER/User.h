@@ -3,8 +3,9 @@
 
 #include <QXmlStreamWriter>
 
-#include "USERDATA/Profilo.h"
-#include "USERDATA/Network.h"
+#include "MODEL/USER_DATA/Profilo.h"
+#include "MODEL/USER_DATA/Network.h"
+#include "MODEL/USER_DATA/Login.h"
 
 class Database; //dich. incompleta
 
@@ -20,9 +21,9 @@ public:
     Network* getNetwork() const;
     Login* getLogin() const;
     
-    void setProfile(const Qstring& name, const Qstring& surname,bool sex,const QDate& date,const Residenza& adress,const Qstring& country,const Qstring& language,const Qstring& mail);
+    void setProfile(const Qstring& name, const Qstring& surname,bool sex,const QDate& date,const Residenza& adress,const Qstring& country,const Qstring& mail);
     
-    //GET INFO FROM UTENTE
+    //GET INFO FROM PROFILO
     const QString &getUsername() const;
     const QString& getNome()const;
     const QString& getCognome()const;

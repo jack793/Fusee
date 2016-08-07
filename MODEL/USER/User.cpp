@@ -10,11 +10,9 @@ Login* User::getLogin() const {return login;}
 
 //SET
 void setProfile(const Qstring& name, const Qstring& surname,bool sex,const QDate& date,
-                    const Residenza& address,const Qstring& country,const Qstring& language,
-                        const Qstring& mail,const int& followers,const int& following,const QString& level ){
+                    const Residenza& address,const Qstring& country,const Qstring& mail){
     profile->setInfo1(name,surname,sex,date,country);
     profile->setInfo2(address,language,mail);
-    profile->setInfo3(followers,following,level);
 }
 
 //GET CAMPI DATI
