@@ -13,6 +13,8 @@ public:
     
     const QString& getUsername() const;
     
+    static Login* readLogin(QXmlStreamReader& );
+    
 };
 
 #endif // LOGIN_H

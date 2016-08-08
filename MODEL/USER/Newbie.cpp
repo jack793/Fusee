@@ -17,5 +17,5 @@ QString Newbie::info() const{
 }
 
 void Newbie::writeType(QXmlStreamWriter& xmlWriter) const{
-    xmlWriter.writeTextElement("tipo","1");
+    xmlWriter.writeTextElement("tipo","0");
 }
