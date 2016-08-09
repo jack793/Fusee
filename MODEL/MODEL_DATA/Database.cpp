@@ -85,6 +85,7 @@ void Database::printUser(const User* u) const{
 
 //CARICAMENTO E CHIUSURA DEL DATABASE
 
+//Caricamento
 void Database::Load(){
     //variabili temporanee
     QString username="Unknown";
@@ -109,12 +110,78 @@ void Database::Load(){
             if(xmlReader.name()="database" || xmlReader.name()="user")
                 xmlReader.readNext();
             
-            else if(xmlReader.name()="login")
+            else if(xmlReader.name()="login"){
                 l=Login::readLogin(xmlReader);
+                username=l->getUsername();
+                password=l->getPsw();
+            }
             
             else if(xmlReader.name()="tipo")
                 tipo=xmlReader.readElementText().toInt();
             
+            else if(xmlReader.name()="profilo")
+                p=Profilo::readProfilo(xmlReader);
+            
+            else if(xmlReader.name()="network")
+                n=Network::readNetwork(xmlReader);
+            
+            else // c'è un problema di lettura (non riconosce alcun tag del .xml?)
+                std::count<<"Houston, we got a problem..";
+            
         }
+        
+        else //legge la chiusura di un tag nel .xml ( </tag> )
+        {
+            if(xmlReader.isEndElement() && xmlReader.name()=="user")
+            {
+                if(tipo==0)
+                    db[username]=new Newbie(p,n,l);
+                else if(tipo==1)
+                    db[username]=new Med(p,n,l);
+                else if(tipo==2)
+                    db[username]=new Pro(p,n,l);
+                
+                //resetto
+                tipo=0;
+                username="Unknown";
+                password="Unknown";
+                
+                xmlReader.readNext();
+            }
+            
+            else //legge vuoto o un EndElement != da "user"
+                xmlReader.readNext();
+        }
+    }
+    std::count<<std::endl<<"read database"<<std::endl;
+    file.close();
+}
+
+//Chiusura
+void Database::Close(){
+    
+    Qfile file(filename);
+    file.open(QIODevice::WriteOnly);
+    
+    QXmlStreamWriter xmlWriter(&file);
+    xmlWriter.setAutoFormatting(true);
+    xmlWriter.writeStartDocument();
+    
+    xmlWriter.writeStartElement("database");
+    
+    std::map<QString,User*>::const_iterator cit=db.begin(); // auto it=db.begin() ?¿
+    for(; cit!=db.end(); ++cit){
+        
+        xmlWriter.writeStartElement("user");
+        
+        xmlWriter.writeTextElement("username",(cit->first)); //Writes a text element with qualifiedName and text.
+        xmlWriter.writeTextElement("password",cit->second->getPsw());
+        (cit->second)->writeTipo(xmlWriter);//???????????
+        
+        xmlWriter.writeStartElement("profilo");
+        
+        xmlWriter.writeTextElement("nome",cit->second->getNome());
+        xmlWriter.writeTextElement("cognome",cit->second->);
+        
     }
 }

@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <database>
     <user>
-        <username>Fra94</username>
-        <password>fra94</password>
+        <login>
+            <username>Fra94</username>
+            <password>fra94</password>
+        </login>
         <tipo>0</tipo>
         <profilo>
             <info1>

@@ -38,7 +38,7 @@ private:
     bool matchUser(const QString& user) const;
     User* findUser(const QString& user) const;
     
-    void changeLevelUser(const QString& user, const int tipo);
+    void changeLevelUser(const QString& user, User *u);
     
     //test
     void printUser(const User* u) const;

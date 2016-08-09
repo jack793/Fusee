@@ -7,6 +7,8 @@ Login::Login(QString user, QString psw): username(user), password(psw) {}
 //GET
 const QString& Login::getUsername() const {return username;}
 
+const QString& Login::getPsw() const {return password;}
+
 //LETTURA IN DB
 Login* Login::readLogin(QXmlStreamReader& xmlReader){
     QString username;
