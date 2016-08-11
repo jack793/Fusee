@@ -68,6 +68,8 @@ void Database::changeLevelUser(User* u){
         Login* l=old->getLogin();
         
         FuseeDb.pop_element(u);
+        
+        QString userType=u->getNetwork()->get
     }
     
     if(matchUser(user)){ //matcha l'utente a cui cambiare il livello

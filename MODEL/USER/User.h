@@ -24,7 +24,8 @@ public:
     void setProfile(const Qstring& name, const Qstring& surname,bool sex,const QDate& date,const Residenza& adress,const Qstring& country,const Qstring& mail);
     
     //GET INFO FROM PROFILO
-    const QString &getUsername() const;
+    const QString& getUsername() const;
+    const QString& getPassword() const;
     const QString& getNome()const;
     const QString& getCognome()const;
     bool getSesso() const;

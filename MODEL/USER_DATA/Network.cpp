@@ -1,25 +1,25 @@
 #include<MODEL/USER_DATA/Network.h>
 
 //COSTRUTTORE
-Network::Network(const std::list<QString>& flwe, const std::list<QString> &flwi): followers(flwe), following(flwi) {}
+Network::Network(const QString &lev, Container<QString>& flwe, Container<QString> &flwi): followers(flwe), following(flwi) {}
 
 
-//CON ITERATORI
+//CON ITERATORI?????????manca se voglio fare
 
-//per lista followers
-Network::net_it Network::beginFlwe() {return followers.begin();}
-Network::net_it Network::endFlwe() {return followers.end();}
-Network::net_const_it Network::beginFlwe() const {return followers.begin();}
-Network::net_const_it Network::endFlwe() const {return followers.end();}
-//per lista following
-Network::net_it Network::beginFlwi() {return following.begin();}
-Network::net_it Network::endFlwi() {return following.end();}
-Network::net_const_it Network::beginFlwi() const {return following.begin();}
-Network::net_const_it Network::endFlwi() const {return following.end();}
 
 //GET
-const std::list<QString>& Network::getFollowers() const {return followers;}
-const std::list<QString>& Network::getFollowing() const {return following;}
+const QString& Network::getLevel() const {
+    int numeroFollowers = followers.size();
+    if( numeroFollowers < 3) //da 0 a 2
+        level="Newbie";
+    else if( numeroFollowers >2 && numeroFollowers < 6) //da 3 a 5
+        level="Med";
+    else if(numeroFollowers > 5) // da 5 in su
+        level="Pro";
+}
+
+Container<QString> &Network::getFollowers() const {return followers;}
+Container<QString>& Network::getFollowing() const {return following;}
 
 //METODI PRP
 bool Network::isFlweEmpty() const {return followers.empty();}

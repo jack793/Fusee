@@ -40,7 +40,7 @@ public:
     bool matchUser(const QString& ) const; //true se l'username c'è nel db
     User* getUser(const QString& , const QString& ) const;
     
-    void changeLevelUser(const QString& , User* );
+    void changeLevelUser(User* );
     
     //test
     void printUser(const User* u) const;

@@ -17,6 +17,7 @@ void setProfile(const Qstring& name, const Qstring& surname,bool sex,const QDate
 
 //GET CAMPI DATI
 const QString& User::getUsername() const{return login->getUsername();}
+const QString& User::getPassword() const {return login->getPsw();}
 const QString& User::getNome() const{return profile->getInfo1().getNome();}
 const QString& User::getCognome() const{return profile->getInfo1().getCognome();}
 bool User::getSesso() const{return profile->getInfo1().getSesso();}

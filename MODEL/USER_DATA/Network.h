@@ -1,7 +1,7 @@
 #ifndef NETWORK_H
 #define NETWORK_H
 
-#include<list>
+#include<MODEL/MODEL_DATA/Container.h>
 #include<Qstring>
 #include<iostream>
 #include<QXmlStreamReader>
@@ -10,31 +10,19 @@ using namespace std;
 
 class Network{
 private:
-    std::list<QString> followers;
-    std::list<QString> following;
+    QString level;
+    Container<QString> followers;
+    Container<QString> following;
 public:
-    Network(const std::list<QString>& flwe=std::list<QString>(), const std::list<QString>& flwi);
-    
-    //creo alias di tipi esistenti per facilitare il riferimento ai miei iteratori
-    typedef std::list<QString>::iterator net_it;
-    typedef std::list<QString>::const_iterator net_const_it;
-    
-    //per lista followers
-    net_it beginFlwe();
-    net_it endFlwe();
-    net_const_it beginFlwe() const;
-    net_const_it endFlwe() const;
-    //per lista following
-    net_it beginFlwi();
-    net_it endFlwi();
-    net_const_it beginFlwi() const;
-    net_const_it endFlwi() const;
+    Network(const QString& lev, Container<QString>& flwe=std::list<QString>(), Container<QString>& flwi);
     
     //get
-    const std::list<QString>& getFollowers() const;
-    const std::list<QString>& getFollowing() const;
+    const QString& getLevel() const;
+    Container<QString>& getFollowers() const;
+    Container<QString>& getFollowing() const;
     
     //altri metodi
+    
     bool isFlweEmpty() const;
     bool isFlwiEmpty() const;
     

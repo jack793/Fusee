@@ -16,7 +16,6 @@
             </info1>
             <info2>
                 <residenza>
-                    <comune>Padova</comune>
                     <regione>Veneto</regione>
                     <indirizzo>via Facciolati</indirizzo>
                 </residenza>
@@ -46,7 +45,6 @@
             </info1>
             <info2>
                 <residenza>
-                    <comune>New York City</comune>
                     <regione>New York</regione>
                     <indirizzo>Park Avenue</indirizzo>
                 </residenza>
@@ -76,7 +74,6 @@
             </info1>
             <info2>
                 <residenza>
-                    <comune>localhost</comune>
                     <regione>localhost</regione>
                     <indirizzo>localhost</indirizzo>
                 </residenza>
