@@ -14,10 +14,15 @@ private:
     Container<QString> followers;
     Container<QString> following;
 public:
-    Network(const QString& lev, Container<QString>& flwe=std::list<QString>(), Container<QString>& flwi);
+    Network(const QString& lev="", Container<QString>& flwe=Container::Container(), Container<QString>& flwi=Container::Container());
+    
+    //il livello di un utente si setta in base al numero di followers
+    QString setLevel(const QString& flwe);
+    
+    void updateLevel(unsigned int);
     
     //get
-    const QString& getLevel() const;
+    QString getLevel() const;
     Container<QString>& getFollowers() const;
     Container<QString>& getFollowing() const;
     
@@ -27,12 +32,12 @@ public:
     bool isFlwiEmpty() const;
     
     bool existFollower(const QString& user);
-    bool existFollowing(const QString& user);
+    bool existFollowing(const QString &user);
     
     void addFollower(const QString& user);
     void addFollowing(const QString& user);
     
-    void rmFollower(const QString& user);
+    void rmFollower(QString user);
     void rmFollowing(const QString& user);
     
     

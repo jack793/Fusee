@@ -1,6 +1,6 @@
 #include<MODEL/MODEL_DATA/Database.h>
 
-QString Database::filename"../Database.xml";
+QString Database::filename"../Fusee/Database.xml";
 
 //COSTRUTTORE E DISTRUTTORE
 Database::Database() { Load(); }
@@ -49,50 +49,25 @@ bool Database::matchUser(const QString& u) const{
     return false;
 }
 
-User* Database::getUser(const QString &user, const QString& psw) const{
+User* Database::getUser(const QString& user, const QString& psw) const{
     for(Container<User*>::Iterator it=FuseeDb.begin(); it!=FuseeDb.end(); ++it)
     {
         if(FuseeDb[it]->getUsername()==u && FuseeDb[it]->getPassword()==psw) //se corrisponde
-            return FuseeDb[it]; //resituisco l'user trovato
+            return FuseeDb[it]; //restituisco l'user trovato
     }
     return 0; //senno un puntatore nullo
 }
 
-void Database::changeLevelUser(User* u){
-    if(matchUser(u->getUsername())){ //matcha l'utente a cui cambiare il livello
-        //ne preleva i dati aggiornati prima di distruggere il nodo dell'user nel db
-        User* old=getUser(u->getUsername(),u->getPassword());
-        
-        Profilo* p=old->getProfile();
-        Network* n=old->getNetwork();
-        Login* l=old->getLogin();
-        
-        FuseeDb.pop_element(u);
-    }
-    
-    if(matchUser(user)){ //matcha l'utente a cui cambiare il livello
-        //ne preleva i dati aggiornati prima di distruggere il nodo di questo utente nel db
-        User* old=db[user];
-        
-        Profilo* p=old->getProfile();
-        Network* n=old->getNetwork();
-        Login* l=old->getLogin();
-        
-        db.erase(user);
-        
-        //ESEGUE CONTROLLI PER IL LIVELLO DA ATTRIBUIRE IN BASE AL NUMERO DI FOLLOWERS!
-        int numeroFollowers = u->getNetwork()->getFollowers().size();
-        if( numeroFollowers < 3) //da 0 a 2
-            db[user]=new Newbie(p,n,l);
-        else if( numeroFollowers >2 && numeroFollowers < 6) //da 3 a 5
-            db[user]=new Med(p,n,l);
-        else if(numeroFollowers > 5) // da 5 in su
-            db[user]=new Pro(p,n,l);
-        
-        old=p=n=l=0; //azzero puntatori che alla chiusura sarebbe garbage altrimenti
-    }
+void Database::updateLevelUser(User* u){
+    User* toUpdate=getUser(u->getUsername(),u->getPassword());
+    if(toUpdate)//se getUser ha trovato..
+    {
+        unsigned int numflwe=u->getNetwork()->getFollowers().size();
+        toUpdate->getNetwork()->updateLevel(numflwe);
+    }   
 }
 
+//di prova 
 void Database::printUser(const User* u) const{
     std::count<<std::endl<<u->getUsername().toStdString()<<std::endl;
     std::count<<u->getNome().toStdString();
@@ -103,26 +78,25 @@ void Database::printUser(const User* u) const{
 
 //Caricamento
 void Database::Load(){
+    
     //variabili temporanee
-    QString username="Unknown";
-    QString password="Unknown";
-    int tipo=0;
+    QString livello="";
     Profilo* p=0;
     Network* n=0;
     Login* l=0;
     
-    QFile file(filename);
-    if (!file.open(QFile::ReadOnly | QFile::Text)) //per problemi con apertura file
-        std::cout<<"Error: Cannot read file"<<std::endl;
+    QFile dbFile(filename);
+    if (!dbFile.open(QFile::ReadOnly | QFile::Text)) //per problemi con apertura file
+        std::cout<<"Error: Cannot read the database file"<<std::endl;
     
-    QXmlStreamReader xmlReader(&file);
+    QXmlStreamReader xmlReader(&dbFile);
     xmlReader.readNext();
     
     while (!xmlReader.atEnd())
     {
         if(xmlReader.isStartElement())
         {
-            //legge il tag dal .xml
+            //legge il tag d'apertura dal .xml
             if(xmlReader.name()="database" || xmlReader.name()="user")
                 xmlReader.readNext();
             
@@ -131,9 +105,6 @@ void Database::Load(){
                 username=l->getUsername();
                 password=l->getPsw();
             }
-            
-            else if(xmlReader.name()="tipo")
-                tipo=xmlReader.readElementText().toInt();
             
             else if(xmlReader.name()="profilo")
                 p=Profilo::readProfilo(xmlReader);
@@ -150,17 +121,26 @@ void Database::Load(){
         {
             if(xmlReader.isEndElement() && xmlReader.name()=="user")
             {
-                if(tipo==0)
-                    db[username]=new Newbie(p,n,l);
-                else if(tipo==1)
-                    db[username]=new Med(p,n,l);
-                else if(tipo==2)
-                    db[username]=new Pro(p,n,l);
-                
+                livello=n->getLevel();
+                if(livello=="Newbie")
+                {
+                    User* newbie=new Newbie(p,n,l);
+                    FuseeDb.push_back(newbie);
+                }   
+                else if(livello=="Med")
+                {
+                    User* med=new Med(p,n,l);
+                    FuseeDb.push_back(med);
+                }
+                else if(livello=="Pro")
+                {
+                    User* pro=new Pro(p,n,l);
+                    FuseeDb.push_back(pro);
+                }
+
                 //resetto
-                tipo=0;
-                username="Unknown";
-                password="Unknown";
+                livello="";
+                p=n=l=0;
                 
                 xmlReader.readNext();
             }
@@ -170,73 +150,69 @@ void Database::Load(){
         }
     }
     std::count<<std::endl<<"read database"<<std::endl;
-    file.close();
+    dbFile.close();
 }
 
 //Salvataggio
 void Database::Close(){
     
-    Qfile file(filename);
+    Qfile dbFile(filename);
     file.open(QIODevice::WriteOnly);
     
-    QXmlStreamWriter xmlWriter(&file);
+    QXmlStreamWriter xmlWriter(&dbFile);
     xmlWriter.setAutoFormatting(true);
     xmlWriter.writeStartDocument();
     
     xmlWriter.writeStartElement("database");
     
-    std::map<QString,User*>::const_iterator cit=db.begin(); // auto it=db.begin() ?¿
-    for(; cit!=db.end(); ++cit){
-        
+    if(!FuseeDb.isEmpty()) //se è vuoto non fa nulla
+        for(Container<User*>::Iterator it=FuseeDb.begin(); it!=FuseeDb.end(); ++it)    
         xmlWriter.writeStartElement("user");
         
         xmlWriter.writeStartElement("login");//<login>
-            xmlWriter.writeTextElement("username",(cit->first)); //Writes a text element with qualifiedName and text.
-            xmlWriter.writeTextElement("password",cit->second->getPsw());
+            xmlWriter.writeTextElement("username",FuseeDb[it]->getUsername()); //Writes a text element with qualifiedName and text.
+            xmlWriter.writeTextElement("password",FuseeDb[it]->getPassword());
         xmlWriter.writeEndElement();    //</login>
-        
-        (cit->second)->writeTipo(xmlWriter); //SCRITTURA POLIMORFA DEL TIPO
         
         xmlWriter.writeStartElement("profilo");//<profilo>
         
             xmlWriter.writeStartElement("info1");   //<info1>
-                xmlWriter.writeTextElement("nome",cit->second->getNome());
-                xmlWriter.writeTextElement("cognome",cit->second->getCognome());
-                xmlWriter.writeTextElement("sesso",cit->second->getSessoString());
-                xmlWriter.writeTextElement("data", cit->second->getDataString());
-                xmlWriter.writeTextElement("paese", cit->second->getPaese());
+                xmlWriter.writeTextElement("nome",FuseeDb[it]->getNome());
+                xmlWriter.writeTextElement("cognome",FuseeDb[it]->getCognome());
+                xmlWriter.writeTextElement("sesso",FuseeDb[it]->getSessoString());
+                xmlWriter.writeTextElement("data",FuseeDb[it]->getDataString());
+                xmlWriter.writeTextElement("paese",FuseeDb[it]->getPaese());
             xmlWriter.writeEndElement();            //</info1>
         
             xmlWriter.writeStartElement("info2");   //<info2>
                 xmlWriter.writeStartElement("residenza");   //<residenza>
-                    xmlWriter.writeTextElement("regione", cit->second->getResidenza().getRegione());
-                    xmlWriter.writeTextElement("indirizzo", cit->second->getResidenza().getIndirizzo());
+                    xmlWriter.writeTextElement("regione", FuseeDb[it]->getResidenza().getRegione());
+                    xmlWriter.writeTextElement("indirizzo", FuseeDb[it]->getResidenza().getIndirizzo());
                 xmlWriter.writeEndElement();                //</residenza>
-                xmlWriter.writeTextElement("professione", cit->second->getProfessione());
-                xmlWriter.writeTextElement("numero",cit->second->getNumero());
-                xmlWriter.writeTextElement("mail", cit->second->getMail());
+                xmlWriter.writeTextElement("professione", FuseeDb[it]->getProfessione());
+                xmlWriter.writeTextElement("numero",FuseeDb[it]->getNumero());
+                xmlWriter.writeTextElement("mail", FuseeDb[it]->getMail());
             xmlWriter.writeEndElement();            //</info2>
             
         xmlWriter.writeEndElement();        //</profilo>
         
         xmlWriter.writeStartElement("network");//<network>
-            if(cit->second->getNetwork()){
-                std::list<QString> followers=(cit->second->getNetwork()->getFollowers());
-                std::list<QString>::const_iterator citFlwe=followers.begin();
-                for(; citFlwe!=followers.end(); ++citFlwe){
-                    std::map<QString, User*>::const_iterator citMap=db.find(*citFlwe); //lo trova
-                    if(citFlwe!=db.end()) //se esiste (cioè se la find sopra non da end)
-                        xmlWriter.writeTextElement("follower", *citFlwe);
-                }
+            if(FuseeDb[it]->getNetwork()){
                 
-                std::list<QString> following=(cit->second->getNetwork()->getFollowing());
-                std::list<QString>::const_iterator citFlwi=following.begin();
-                for(; citFlwi!=following.end(); ++citFlwi){
-                    std::map<QString, User*>::const_iterator citMap=db.find(*citFlwi); //lo trova
-                    if(citFlwi!=db.end()) //se esiste (cioè se la find sopra non da end)
-                        xmlWriter.writeTextElement("following", *citFlwi);
-                }
+                FuseeDb[it]->writeLevel(xmlWriter);//SCRITTURA POLIMORFA DEL LIVELLO
+                        
+                Container<QString> followers=(FuseeDb[it]->getNetwork()->getFollowers());
+                Container<QString>::Iterator itFlwe=followers.begin();
+                for(; itFlwe!=followers.end(); ++itFlwe)
+                    xmlWriter.writeTextElement("follower", it[itFlwe]);
+                
+                Container<QString> following=(FuseeDb[it]->getNetwork()->getFollowing());
+                Container<QString>::Iterator itFlwi=following.begin();
+                for(; itFlwi!=following.end(); ++itFlwi)
+                    xmlWriter.writeTextElement("following", it[itFlwi]);
             }
+                
+            
         xmlWriter.writeEndElement();           //</network>
         
         xmlWriter.writeEndElement();//</user>   

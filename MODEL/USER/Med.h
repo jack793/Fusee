@@ -9,7 +9,7 @@ public:
     
     virtual QString toString() const;
     virtual QString info() const;
-    virtual void writeType(QXmlStreamWriter& xmlWriter) const;
+    virtual void writeLevel(QXmlStreamWriter& xmlWriter) const;
     virtual bool search(const Utente* user,const QString& text,const QString& category) const;
 };
 

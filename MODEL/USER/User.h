@@ -15,8 +15,8 @@ private:
     Network* net;
     Login* login;
 public:
-    User(Profilo* p=0,Network* r=0, Login* l=0);
-    
+    User(Profilo* p=0,Network* n=0, Login* l=0);
+        
     Profilo* getProfile() const;
     Network* getNetwork() const;
     Login* getLogin() const;
@@ -36,10 +36,11 @@ public:
     const Residenza& getResidenza()const;
     const QString& getMail()const;
     
-    
+
     virtual QString toString() const =0;
     virtual QString info() const =0;
-    virtual void writeType(QXmlStreamWriter& xmlWriter) const =0;
+    
+    virtual void writeLevel(QXmlStreamWriter& xmlWriter) const =0;
     virtual bool search(const Utente* user,const QString& text,const QString& category) const =0;
     
     virtual ~Utente();

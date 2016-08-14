@@ -5,7 +5,6 @@
             <username>Fra94</username>
             <password>fra94</password>
         </login>
-        <tipo>0</tipo>
         <profilo>
             <info1>
                 <nome>Fracesco</nome>
@@ -25,6 +24,7 @@
             </info2>
         </profilo>
         <network>
+            <level>Newbie</level>
             <follower>Mark95</follower>
             <follower>AnnaDev</follower>
             <following>Mark95</following>

@@ -15,7 +15,7 @@ QString Pro::info() const{
     return info_txt;
 }
 
-void Newbie::writeType(QXmlStreamWriter& xmlWriter) const{
-    xmlWriter.writeTextElement("tipo","2");
+void Pro::writeLevel(QXmlStreamWriter& xmlWriter) const{
+    xmlWriter.writeTextElement("level","Pro");
 }
 

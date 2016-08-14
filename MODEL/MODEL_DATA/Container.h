@@ -112,10 +112,6 @@ public:
     
     bool isEmpty() const { return first==0; }
 
-    unsigned int getNum items() const {
-        return  items;
-    }
-
     void push_front(T& t){
         first=new Nodo(t,first);
          items++;
@@ -189,7 +185,7 @@ public:
     T& operator[](const Iterator& cit) const{
         return (cit.punt)->info;
     }
-
+ 
 };  //FINE TEMPLATE DI CLASSE Container
 
 

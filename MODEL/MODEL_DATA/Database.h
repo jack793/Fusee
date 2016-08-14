@@ -38,9 +38,10 @@ public:
     void addUser(User* );    //aggiunge un user al db
     
     bool matchUser(const QString& ) const; //true se l'username c'è nel db
+    
     User* getUser(const QString& , const QString& ) const;
     
-    void changeLevelUser(const QString& , User* );
+    void updateLevelUser(User* );
     
     //test
     void printUser(const User* u) const;

@@ -29,9 +29,9 @@ const QString& User::getPaese() const{return profile->getInfo1().getPaese();}
 const Residenza& User::getResidenza() const{return profile->getInfo2().getResidenza();}
 const QString& User::getMail() const{return profile->getInfo2().getMail();}
 
-const int& User::getFollowers() const{retun profile->getInfo3().getFollowers();}
-const int& User::getFollowing() const{retun profile->getInfo3().getFollowing();}
-const QString& User::getLevel() const{return profile->getInfo3().getLevel();}
+Container<QString> User::getFollowers() const{return Network->getFollowers();}
+Container<QString> User::getFollowing() const{return Network->getFollowing();}
+QString User::getLevel() const{return Network.getLevel();}
 
 //DISTRUTTORE
 User::~User(){

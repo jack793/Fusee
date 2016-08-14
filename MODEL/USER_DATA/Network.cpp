@@ -1,57 +1,72 @@
 #include<MODEL/USER_DATA/Network.h>
 
 //COSTRUTTORE
-Network::Network(const QString &lev, Container<QString>& flwe, Container<QString> &flwi): followers(flwe), following(flwi) {}
+Network::Network(Container<QString>& flwe, Container<QString> &flwi): followers(flwe), following(flwi) 
+{   
+    //il livello viene settato tramite la funzione adibita setLevel
+    level=setLevel(flwe);
+}
 
-
-//CON ITERATORI?????????manca se voglio fare
-
-
-//GET
-const QString& Network::getLevel() const {
-    int numeroFollowers = followers.size();
+// Setta il giusto livello in base ai followers
+QString Network::setLevel(const Container<QString>& c)
+{
+    int numeroFollowers = c.size();
     if( numeroFollowers < 3) //da 0 a 2
-        level="Newbie";
+        return level="Newbie";
     else if( numeroFollowers >2 && numeroFollowers < 6) //da 3 a 5
-        level="Med";
+        return level="Med";
     else if(numeroFollowers > 5) // da 5 in su
+        return level="Pro";
+}
+
+void Network::updateLevel(unsigned int numFlwe){
+    if( numFlwe < 3) //da 0 a 2
+        level="Newbie";
+    else if( numFlwe >2 && numeroFollowers < 6) //da 3 a 5
+        level="Med";
+    else if(numFlwe > 5) // da 5 in su
         level="Pro";
 }
 
-Container<QString> &Network::getFollowers() const {return followers;}
+
+//GET
+QString Network::getLevel() const {return level;}
+Container<QString>& Network::getFollowers() const {return followers;}
 Container<QString>& Network::getFollowing() const {return following;}
 
 //METODI PRP
-bool Network::isFlweEmpty() const {return followers.empty();}
-bool Network::isFlwiEmpty() const {return following.empty();}
+bool Network::isFlweEmpty() const {return followers.isEmpty();}
+bool Network::isFlwiEmpty() const {return following.isEmpty();}
 
 //exist
 bool Network::existFollower(const QString& user){
     bool trovato=false;
-    std::list<QString>::const_iterator cit=followers.begin();
-    while(!trovato && (cit!=followers.end()) ){
-        if(*cit==user) //è gia tra i followers
+    Container<QString>::Iterator it=followers.begin();
+    while(!trovato && (it!=followers.end()) ){
+        if(followers[it]==user) //è gia tra i followers
             trovato=true;
-        cit++;
+        it++;
     }
     return trovato;
 }
 
 bool Network::existFollowing(const QString& user){
     bool trovato=false;
-    std::list<QString>::const_iterator cit=following.begin();
-    while(!trovato && (cit!=following.end()) ){
-        if(*cit==user) //è gia tra i following
+    Container<QString>::Iterator it=following.begin();
+    while(!trovato && (it!=following.end()) ){
+        if(following[it]==user) //è gia tra i following
             trovato=true;
-        cit++;
+        it++;
     }
     return trovato;
 }
 
 //add
 void Network::addFollower(const QString& user){
-    if(!existFollower(user))
+    if(!existFollower(user)){
         followers.push_back(user);
+        updateLevel(followers.size());  //aggiorno il livello dopo l'aggiunta di un follower 
+    }
 }
 
 void Network::addFollowing(const QString& user){
@@ -60,32 +75,33 @@ void Network::addFollowing(const QString& user){
 }
 
 //remove
-void Network::rmFollower(const QString& user){
-    followers.remove(user);
-    //Removes from the container all the elements that compare equal to val. (in base al valore e non alla posiz.)
-    //This calls the destructor of these objects and reduces the container size by the number of elements removed.
+void Network::rmFollower(QString user){
+    followers.pop_element(user);
     std::cout<<followers.size()<<"followers"<<std::endl;
 }
 
-void Network::rmFollowing(const QString& user){
-    following.remove(user);
+void Network::rmFollowing(QString user){
+    following.pop_element(user);
     std::cout<<following.size()<<"following"<<std::endl;
 }
 
 //LETTURA IN DB
 Network* Network::readNetwork(QXmlStreamReader& xmlReader){
-    std::list<QString> followers;
-    std::list<QString> followers;
+    QString lev="Unknown";
+    Container<QString> followers;
+    Container<QString> followers;
     while(!xmlReader.isEndElement() || !(xmlReader.name()=="network")){
         if(xmlReader.isStartElement()){
+            if(xmlReader.name()=="level")
+                xmlReader.readElementText();
             if(xmlReader.name()=="follower")
-                followers.push_back( xmlReader.readElementText() );
+                followers.push_back(xmlReader.readElementText());
             else if(xmlReader.name()="following")
                 following.push_back( xmlReader.readElementText() );
         }
         xmlReader.readNext();
     }
-    return new Network(followers,following)
+    return new Network(lev,followers,following)
 }
 
 
