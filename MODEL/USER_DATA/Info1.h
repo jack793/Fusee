@@ -10,9 +10,9 @@ private:
     QString cognome;
     bool sesso;
     QDate dataNascita;
-    QString paese;
+    QString nazione;
 public:
-    Info1(const QString& n="Unknown", const QString& c="Unknown", const bool s=0, const QDate& d=QDate(1970,1,1), const QString& p="" );
+    Info1(const QString& n="Unknown", const QString& c="Unknown", const bool s=0, const QDate& d=QDate(1970,1,1), const QString& nz="" );
     
     const QString& getNome() const;
     const QString& getCognome() const;
@@ -20,13 +20,13 @@ public:
     QString getSessoString() const;
     const QDate& getData() const;
     QString getDataString() const;
-    const QString& getPaese() const;
+    const QString& getNazione() const;
     
     void setNome(const QString& n);
     void setCognome(const QString& c);
     void setSesso(bool s);
     void setData(const QDate& d);  
-    void setPaese(const QString& p);
+    void setNazione(const QString& nz);
     
     static Info1 readInfo1(QXmlStreamReader& );
     
