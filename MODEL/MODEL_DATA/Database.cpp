@@ -42,13 +42,15 @@ void Database::addUser(User* u){
     }
 }
 
+//true sse esiste username associato ad un utente nel db
 bool Database::matchUser(const QString& u) const{
-    //Cerca in tutto il contenitore un elemento con una chiave uguale a quella passata 
+    //Cerca in tutto il contenitore un elemento con una chiave (username) uguale a quella passata 
     for(Container<User*>::Iterator it=FuseeDb.begin(); it!=FuseeDb.end(); ++it)
         if(FuseeDb[it]->getUsername()==u) return true;
     return false;
 }
 
+//torna un puntatore a quell'utente
 User* Database::getUser(const QString& user, const QString& psw) const{
     for(Container<User*>::Iterator it=FuseeDb.begin(); it!=FuseeDb.end(); ++it)
     {

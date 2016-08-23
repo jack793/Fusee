@@ -11,17 +11,21 @@
                 <cognome>Rossi</cognome>
                 <sesso>M</sesso>
                 <data>16/3/1994</data>
-                <paese>Italia</paese>
+                <nazione>Italia</nazione>
             </info1>
             <info2>
                 <residenza>
                     <regione>Veneto</regione>
+                    <paese>Padova</paese>
                     <indirizzo>via Facciolati</indirizzo>
                 </residenza>
                 <professione>Studente</professione>
                 <numero>3482531679</numero>
                 <mail>fra94@gmail.com</mail>
             </info2>
+            <info3>
+                <post>ciao a tutti sono nuovo in Fusee, seguitemi!!</post>
+            </info3>
         </profilo>
         <network>
             <level>Newbie</level>
@@ -29,175 +33,6 @@
             <follower>AnnaDev</follower>
             <following>Mark95</following>
             <following>AnnaDev</following>
-        </network>
-    </user>
-    <user>
-        <username>Mark95</username>
-        <password>mark</password>
-        <tipo>1</tipo>
-        <profilo>
-            <info1>
-                <nome>Mark</nome>
-                <cognome>Green</cognome>
-                <sesso>M</sesso>
-                <data>11/2/1995</data>
-                <paese>Stati Uniti</paese>
-            </info1>
-            <info2>
-                <residenza>
-                    <regione>New York</regione>
-                    <indirizzo>Park Avenue</indirizzo>
-                </residenza>
-                <professione>Web Designer</professione>
-                <numero>3106724557</numero>
-                <mail>mark95@hotmail.it</mail>
-            </info2>
-        </profilo>
-        <network>
-            <follower>Fra94</follower>
-            <follower>AnnaDev</follower>
-            <follower>RicoFede</follower>
-            <following>AnnaDev</following>
-            <following>Fra94</following>
-        </network>
-    </user>
-    <user>
-        <username>asd</username>
-        <tipo>2</tipo>
-        <profilo>
-            <info1>
-                <nome>Profilo</nome>
-                <cognome>Test</cognome>
-                <sesso>M</sesso>
-                <data>1/1/1940</data>
-                <paese>root</paese>
-            </info1>
-            <info2>
-                <residenza>
-                    <regione>localhost</regione>
-                    <indirizzo>localhost</indirizzo>
-                </residenza>
-                <professione>Debugger</professione>
-                <lingue>C++</lingue>
-                <numero>1111111111</numero>
-                <mail>prova@mail.com</mail>
-            </info2>
-            <info3/>
-        </profilo>
-        <network>
-            <followers>beckel</followers>
-            <followers>bstrou</followers>
-            <followers>Jeff</followers>
-            <followers>Andy</followers>
-            <followers>lwall</followers>
-        </network>
-    </user>
-    <user>
-        <username>beckel</username>
-        <tipo>1</tipo>
-        <profilo>
-            <info1>
-                <nome>Bruce</nome>
-                <cognome>Eckel</cognome>
-                <sesso>M</sesso>
-                <data>8/7/1957</data>
-                <paese>Stati Uniti</paese>
-            </info1>
-            <info2>
-                <residenza>
-                    <comune></comune>
-                    <regione></regione>
-                    <indirizzo></indirizzo>
-                </residenza>
-                <professione>Computer Programmer, autore, colonnista</professione>
-                <lingue>Inglese</lingue>
-                <numero></numero>
-                <mail></mail>
-                <titolo>BS Applied Physics, University of California at Irvine</titolo>
-                <titolo> MS Computer Engineering, Cal Poly San Luis Obispo</titolo>
-            </info2>
-            <info3>
-                <esperienza> Membro fondatote ANSI/ISO C++ standard</esperienza>
-                <esperienza>Scrittore articoli su linguaggi di programmazione</esperienza>
-                <esperienza>Java Alley columnist per Web Techniques magazine</esperienza>
-                <esperienza>Autore di Thinking in C++</esperienza>
-                <esperienza>Presidente di MindView</esperienza>
-                <esperienza>Esperto di programming languages e software system desig</esperienza>
-                <esperienza>Cofondatore di  JavaPosse Roundup Conference</esperienza>
-                <esperienza>Creatore di Scala Summit Conference</esperienza>
-            </info3>
-        </profilo>
-        <network>
-            <followers>bstrou</followers>
-        </network>
-    </user>
-    <user>
-        <username>bstrou</username>
-        <tipo>1</tipo>
-        <profilo>
-            <info1>
-                <nome>Bjarne</nome>
-                <cognome>Stroustrup</cognome>
-                <sesso>M</sesso>
-                <data>30/12/1950</data>
-                <paese>Stati Uniti</paese>
-            </info1>
-            <info2>
-                <residenza>
-                    <comune></comune>
-                    <regione>New York</regione>
-                    <indirizzo></indirizzo>
-                </residenza>
-                <professione>Professore, ricercatore</professione>
-                <lingue>Inglese, danese</lingue>
-                <numero></numero>
-                <mail></mail>
-                <titolo> PhD in computer science - Cambridge University</titolo>
-                <titolo>Master's in mathematics - Aarhus University </titolo>
-            </info2>
-            <info3>
-                <esperienza>Designer and original implementer of C++</esperienza>
-                <esperienza>Managing Director in the technology division of Morgan Stanley </esperienza>
-                <esperienza>Promotion to Distinguished Professor (the university's highest academic rank).</esperienza>
-            </info3>
-        </profilo>
-        <network>
-            <followers>beckel</followers>
-        </network>
-    </user>
-    <user>
-        <username>lwall</username>
-        <tipo>0</tipo>
-        <profilo>
-            <info1>
-                <nome>Larry</nome>
-                <cognome>Wall</cognome>
-                <sesso>M</sesso>
-                <data>27/9/1954</data>
-                <paese>Stati Uniti</paese>
-            </info1>
-            <info2>
-                <residenza>
-                    <comune></comune>
-                    <regione></regione>
-                    <indirizzo></indirizzo>
-                </residenza>
-                <professione>Computer Programmer, linguista, autore</professione>
-                <lingue>Inglese</lingue>
-                <numero></numero>
-                <mail>larry@wall.org</mail>
-            </info2>
-            <info3>
-                <esperienza>Co-autore di Programming Perl</esperienza>
-                <esperienza>Autore del libro Perl-CookBook</esperienza>
-                <esperienza>Autore di Patch program</esperienza>
-                <esperienza>Autore di Usenet client</esperienza>
-                <esperienza>Vincitore dell'International Obfuscated C Code Contest</esperienza>
-            </info3>
-        </profilo>
-        <network>
-            <followers>beckel</followers>
-            <followers>bstrou</followers>
         </network>
     </user>
 </database>

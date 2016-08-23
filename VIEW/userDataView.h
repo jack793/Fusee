@@ -1,19 +1,25 @@
 #ifndef USERDATAVIEW_H
 #define USERDATAVIEW_H
 
-#include<QWidget>
-#include<QPushButton>
-#include<QLabel>
-#include<QRadioButton>
-#include<QFont>
-#include<QLineEdit>
-#include<QVBoxLayout>
+#include <QWidget>
+#include <QScrollArea>
+#include <QLabel>
+#include <QRadioButton>
+#include <QString>
+#include <QFrame>
+#include <QFont>
+#include <QGridLayout>
 
+#include<MODEL/USER/User.h>
 
-class userDataView
+class userDataView: public QScrollArea
 {
-public:
-    userDataView();
+    Q_OBJECT
+private:
+    const User* user;
+    QFrame* ScrollArea;
+    QLabel* usernameLabel;
+    QLabel*
 };
 
 #endif // USERDATAVIEW_H

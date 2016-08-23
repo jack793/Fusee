@@ -16,6 +16,8 @@ public:
     void setDiary(const Container<QString>& dy);
     bool matchNote(const QString& text) const;
     
+    void addNote(const QString& text);
+    
     static Info3 readInfo3(QXmlStreamReader& );
 };
 

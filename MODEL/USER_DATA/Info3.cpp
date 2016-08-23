@@ -21,6 +21,11 @@ bool Info3::matchNote(const QString& text) const
     return false;
 }
 
+void Info3::addNote(const QString& text)
+{
+    diario.push_front(text);
+}
+
 //LETTURA IN DB
 Info3 Info3::readInfo3(QXmlStreamReader& xmlReader){
     //var temporanea
