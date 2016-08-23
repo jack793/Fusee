@@ -19,3 +19,16 @@ QString Newbie::info() const{
 void Newbie::writeLevel(QXmlStreamWriter& xmlWriter) const{
     xmlWriter.writeTextElement("level","Newbie");
 }
+
+bool Newbie::search(User* user, const QString& text, const QString& category) const
+{
+    std::cout<<std::endl<<"Ricerca utente Newbie "<<user->getLogin()->getUsername().toStdString()<<std::endl;
+    
+    if((category=="Tutto") || (category=="Username") && (user->getUsername().contains(text, Qt::CaseInsensitive)))
+    {
+        std::cout<<"Username match"<<std::endl;
+        return true;
+    }
+    else
+        return false;
+}

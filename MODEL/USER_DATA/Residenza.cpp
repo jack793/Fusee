@@ -4,9 +4,9 @@
 Residenza::Residenza(const QString& r, const QString& p, const QString& i): regione(r), paese(p), indirizzo(p) {}
 
 //GET
-QString Residenza::getRegione() const{return regione;}
-QString Residenza::getPaese() const{return paese;}
-QString Residenza::getIndirizzo() const{return indirizzo;}
+const QString& Residenza::getRegione() const{return regione;}
+const QString& Residenza::getPaese() const{return paese;}
+const QString& Residenza::getIndirizzo() const{return indirizzo;}
 
 Residenza Residenza::readResidenza(QXmlStreamReader& xmlReader){
     QString regione="Unknown";

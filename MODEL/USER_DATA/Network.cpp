@@ -1,7 +1,7 @@
 #include<MODEL/USER_DATA/Network.h>
 
 //COSTRUTTORE
-Network::Network(Container<QString>& flwe, Container<QString> &flwi): followers(flwe), following(flwi) 
+Network::Network(const Container<QString>& flwe, const Container<QString>& flwi): followers(flwe), following(flwi) 
 {   
     //il livello viene settato tramite la funzione adibita setLevel
     level=setLevel(flwe);
@@ -30,9 +30,9 @@ void Network::updateLevel(unsigned int numFlwe){
 
 
 //GET
-QString Network::getLevel() const {return level;}
-Container<QString>& Network::getFollowers() const {return followers;}
-Container<QString>& Network::getFollowing() const {return following;}
+const QString& Network::getLevel() const {return level;}
+const Container<QString>& Network::getFollowers() const {return followers;}
+const Container<QString>& Network::getFollowing() const {return following;}
 
 //METODI PRP
 bool Network::isFlweEmpty() const {return followers.isEmpty();}
@@ -97,7 +97,7 @@ Network* Network::readNetwork(QXmlStreamReader& xmlReader){
             if(xmlReader.name()=="follower")
                 followers.push_back(xmlReader.readElementText());
             else if(xmlReader.name()="following")
-                following.push_back( xmlReader.readElementText() );
+                following.push_back(xmlReader.readElementText());
         }
         xmlReader.readNext();
     }

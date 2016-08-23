@@ -18,3 +18,26 @@ void Med::writeLevel(QXmlStreamWriter& xmlWriter) const{
     xmlWriter.writeTextElement("level","Med");
 }
 
+bool Med::search(User* user, const QString& text, const QString& category) const
+{
+    std::cout<<std::endl<<"Ricerca utente Med"<<user->getLogin()->getUsername().toStdString()<<std::endl;
+    
+    if((category=="Tutto") || (category=="Username") && (user->getUsername().contains(text,Qt::CaseInsensitive)))
+    {
+        std::cout<<"Username match"<<std::endl;
+        return true;
+    }
+    else if((category=="Tutto") || (category=="Nome") && (user->getNome().contains(text, Qt::CaseInsensitive)))
+    {
+        std::cout<<"Nome match"<<std::endl;
+        return true;
+    }
+    else if((category=="Tutto") || (category=="Cognome") && (user->getCognome().contains(text, Qt::CaseInsensitive)))
+    {
+        std::cout<<"Cognome match"<<std::endl;
+        return true;
+    }
+    else
+        return false;
+}
+

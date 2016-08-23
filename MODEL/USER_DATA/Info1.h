@@ -1,6 +1,7 @@
 #ifndef INFO1_H
 #define INFO1_H
 
+#include<QXmlStreamReader>
 #include<QDate>
 #include<QString>
 

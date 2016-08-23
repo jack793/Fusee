@@ -14,17 +14,17 @@ private:
     Container<QString> followers;
     Container<QString> following;
 public:
-    Network(const QString& lev="", Container<QString>& flwe=Container::Container(), Container<QString>& flwi=Container::Container());
+    Network(const Container<QString>& flwe=Container::Container(), const Container<QString>& flwi=Container::Container());
     
     //il livello di un utente si setta in base al numero di followers
-    QString setLevel(const QString& flwe);
+    QString setLevel(const Container<QString>& );
     
     void updateLevel(unsigned int);
     
     //get
-    QString getLevel() const;
-    Container<QString>& getFollowers() const;
-    Container<QString>& getFollowing() const;
+    const QString& getLevel() const;
+    const Container<QString>& getFollowers() const;
+    const Container<QString>& getFollowing() const;
     
     //altri metodi
     
@@ -43,7 +43,6 @@ public:
     
     //lettura in db
     static Network* readNetwork(QXmlStreamReader& );
-    //non c'è controllo dell'esistenza dell'username, per quello si occupa chi aggiunge
     
 };
 

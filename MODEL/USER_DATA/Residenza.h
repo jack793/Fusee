@@ -11,9 +11,9 @@ private:
 public:
     Residenza(const QString& r="", const QString& p="", const QString& i="");
     
-    QString getRegione() const;
-    QString getPaese() const;    
-    QString getIndirizzo() const;
+    const QString& getRegione() const;
+    const QString& getPaese() const;    
+    const QString& getIndirizzo() const;
     
     static Residenza readResidenza(QXmlStreamReader& );
 };

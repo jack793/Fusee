@@ -204,12 +204,12 @@ void Database::Close(){
                 Container<QString> followers=(FuseeDb[it]->getNetwork()->getFollowers());
                 Container<QString>::Iterator itFlwe=followers.begin();
                 for(; itFlwe!=followers.end(); ++itFlwe)
-                    xmlWriter.writeTextElement("follower", it[itFlwe]);
+                    xmlWriter.writeTextElement("follower", followers[itFlwe]);
                 
                 Container<QString> following=(FuseeDb[it]->getNetwork()->getFollowing());
                 Container<QString>::Iterator itFlwi=following.begin();
                 for(; itFlwi!=following.end(); ++itFlwi)
-                    xmlWriter.writeTextElement("following", it[itFlwi]);
+                    xmlWriter.writeTextElement("following", following[itFlwi]);
             }
                 
             

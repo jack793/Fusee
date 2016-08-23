@@ -32,7 +32,7 @@ public:
     QString getSessoString()const;
     const QDate &getData()const;
     QString getDataString()const;
-    const QString& getPaese()const;
+    const QString& getNazione() const;
     const Residenza& getResidenza()const;
     const QString& getMail()const;
     
@@ -41,7 +41,7 @@ public:
     virtual QString info() const =0;
     
     virtual void writeLevel(QXmlStreamWriter& xmlWriter) const =0;
-    virtual bool search(const Utente* user,const QString& text,const QString& category) const =0;
+    virtual bool search(User* user,const QString& text,const QString& category) const =0;
     
     virtual ~Utente();
 	

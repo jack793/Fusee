@@ -24,7 +24,7 @@ bool User::getSesso() const{return profile->getInfo1().getSesso();}
 QString User::getSessoString() const{return profile->getInfo1().getSessoString();}
 const QDate& User::getData() const{return profile->getInfo1().getData();}
 QString User::getDataString() const{return profile->getInfo1().getDataString();}
-const QString& User::getPaese() const{return profile->getInfo1().getPaese();}
+const QString& User::getNazione() const{return profile->getInfo1().getNazione();}
 
 const Residenza& User::getResidenza() const{return profile->getInfo2().getResidenza();}
 const QString& User::getMail() const{return profile->getInfo2().getMail();}

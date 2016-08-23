@@ -20,8 +20,6 @@ class Database{
 private:
     static QString filename;    //var name che acquisirà la path del db fisico .xml del progetto
     Container<User*> FuseeDb;
-    
-        
 public:
     Database();
     ~Database();
