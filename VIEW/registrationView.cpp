@@ -37,6 +37,14 @@ void RegistrationView::loadGraphic(){
     dataNascitaLabel=new QLabel("Inserisci la data di nascita (giorno,mese,anno):");
     dateBox=new DateBox(formScroll,1900,2000);
     
+    professioneLabel=new QLabel("Inserisci la professione atttuale:");
+    professioneEdit=new QLineEdit(formScroll);
+    professioneEdit->setFixedWidth(300);
+    
+    numeroLabel=new QLabel("Inserisci un contatto telefonico:");
+    numeroEdit=new QLineEdit(formScroll);
+    numeroEdit->setFixedWidth(300);
+    
     sessoButtonG=new QButtonGroup(formScroll);
     sessoLabel=new QLabel("Selezione sesso",formScroll);
     sessoM=new QRadioButton("Maschio",formScroll);
@@ -95,6 +103,8 @@ void RegistrationView::checkDati(){
     std::string password=passwordEdit->text().toStdString();
     std::string nome=nomeEdit->text().toStdString();
     std::string cognome=cognomeEdit->text().toStdString();
+    std::string professione=professioneEdit->text().toStdString();
+    std::string numero=numeroEdit->text().toStdString();
     QDate dataNascita=dateBox->getDate();
     bool sesso=false;
     if(sessoM->isChecked())
@@ -128,6 +138,14 @@ void RegistrationView::checkDati(){
         dialMessage=new DialogMessage("Controllo dati","Non hai compilato il campo COGNOME","Indietro");
         dialMessage->show();
     }
+    else if(professione.size()==0){
+        dialMessage=new DialogMessage("Controllo dati","Non hai compilato il campo PROFESSIONE","Indietro");
+        dialMessage->show();
+    }
+    else if(numero.size()==0){
+        dialMessage=new DialogMessage("Controllo dati","Non hai compilato il campo NUMERO","Indietro");
+        dialMessage->show();
+    }
     else if(nazione.size()==0){
         dialMessage=new DialogMessage("Controllo dati","Non hai compilato il campo NAZIONE","Indietro");
         dialMessage->show();
@@ -145,7 +163,7 @@ void RegistrationView::checkDati(){
         dialMessage->show();
     }
     else //form completo
-        emit createUser(username,password,nome,cognome,sesso,nazione,regione,paese,indirizzo);      
+        emit createUser(username,password,nome,cognome,sesso,professione,numero,nazione,regione,paese,indirizzo);      
 }
 
 void RegistrationView::cancelRegistration(){

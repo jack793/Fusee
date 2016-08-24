@@ -3,7 +3,9 @@
 //COSTRUTTORI
 StartView::StartView()
 {
+    this->setStyleSheet("background-image: url(../backG.jpg)");
     this->setFixedSize(350,150);
+    
     welcomeTitle=new QLabel(this);
     welcomeTitle->setText(QString::fromStdString("Benvenuto in Fusee\nPuoi accedere tramite login o creando un nuovo utente"));
     

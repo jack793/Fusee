@@ -5,6 +5,7 @@ Info3::Info3(const Container<QString>& dy): diario(dy) {}
 
 //GET
 const Container<QString>& Info3::getDiary() const {return diario;}
+unsigned int Info3::getSizeD() const {return diario.size();}
 
 //SET
 void Info3::setDiary(const Container<QString>& dy) {diario=dy;}

@@ -66,6 +66,11 @@ private:
     QLineEdit* nazioneEdit;
     QLabel* nazioneLabel;
     
+    QLineEdit* professioneEdit;
+    QLabel* professioneLabel;
+    QLineEdit* numeroEdit;
+    QLabel* numeroLabel;
+    
     //pushbutton
     QPushButton* createPButton;
     QPushButton* cancelPButton;
@@ -82,8 +87,8 @@ private slots:
     void checkDati();
     void cancelRegistration();
 signals:
-    void createUser(const QString&, const QString&, const QString&, const QString&, bool , const QString&, const QString&, const QString& , const QString& );
-                    // (username, password, nome, cognome, sesso, nazione, regione, paese, indirizzo)
+    void createUser(const QString&, const QString&, const QString&, const QString&, bool , const QString&, const QString&, const QString& , const QString&, const QString& , const QString& );
+                    // (username, password, nome, cognome, sesso, professione, numero, nazione, regione, paese, indirizzo)
     void UserNotCreate();
 };
 

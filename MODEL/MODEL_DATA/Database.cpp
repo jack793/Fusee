@@ -26,19 +26,28 @@ void Database::dtorUser(User* u){
 
 void Database::addUser(User* u){
     if(!matchUser(u->getUsername())){   //se non esiste già
-        Profilo* p=new Profilo(Info1(nome,cognome), Info2()); //crea primo campo dati di un User
-        Network* n=new Network(std::list<QString>(),std::list<QString>()); //secondo campo dati
+        Profilo* p=new Profilo(Info1(nome,cognome), Info2(), Info3()); //crea primo campo dati di un User
+        Network* n=new Network(Container<QString>(),Container<QString>()); //secondo campo dati
         Login* l=new Login(user, psw); //terzo campo dati
         
-        //si parte sempre da livello Newbie(il più basso)
-        User* new=new Newbie(p,n,l);
-        FuseeDb.push_front(new);
+        if(u->getLevel()=="Newbie"){
+            Newbie* n=new Newbie(p,n,l);
+            FuseeDb.push_front(n);
+        }
         
+        else if(u->getLevel()=="Med"){
+            Med* m=new Med(p,n,l);
+            FuseeDb.push_front(m);
+        }
+        
+        else if(u->getLevel()=="Pro"){
+            Pro* p=new Pro(p,n,l);
+            FuseeDb.push_front(p);
+        }
         //pulisco heap
         delete p;
         delete n;
         delete l;
-        delete new;
     }
 }
 

@@ -8,7 +8,7 @@ Network::Network(const Container<QString>& flwe, const Container<QString>& flwi)
 }
 
 // Setta il giusto livello in base ai followers
-QString Network::setLevel(const Container<QString>& c)
+QString Network::setLevelString(const Container<QString>& c)
 {
     int numeroFollowers = c.size();
     if( numeroFollowers < 3) //da 0 a 2
@@ -72,11 +72,13 @@ void Network::addFollower(const QString& user){
 void Network::addFollowing(const QString& user){
     if(!existFollowing(user))
         following.push_back(user);
+    
 }
 
 //remove
 void Network::rmFollower(QString user){
     followers.pop_element(user);
+    updateLevel(followers.size());  //update
     std::cout<<followers.size()<<"followers"<<std::endl;
 }
 
@@ -101,7 +103,7 @@ Network* Network::readNetwork(QXmlStreamReader& xmlReader){
         }
         xmlReader.readNext();
     }
-    return new Network(lev,followers,following)
+    return new Network(lev,followers,following);
 }
 
 

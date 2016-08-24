@@ -17,7 +17,7 @@ public:
     Network(const Container<QString>& flwe=Container::Container(), const Container<QString>& flwi=Container::Container());
     
     //il livello di un utente si setta in base al numero di followers
-    QString setLevel(const Container<QString>& );
+    QString setLevelString(const Container<QString>& );
     
     void updateLevel(unsigned int);
     

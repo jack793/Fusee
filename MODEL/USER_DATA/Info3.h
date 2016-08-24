@@ -13,6 +13,8 @@ public:
     Info3(const Container<QString>& dy=Container::Container() );
     
     const Container<QString>& getDiary() const;
+    unsigned int getSizeD() const;
+    
     void setDiary(const Container<QString>& dy);
     bool matchNote(const QString& text) const;
     

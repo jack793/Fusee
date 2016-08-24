@@ -21,7 +21,7 @@ public:
     Network* getNetwork() const;
     Login* getLogin() const;
     
-    void setProfile(const Qstring& name, const Qstring& surname,bool sex,const QDate& date,const Residenza& adress,const Qstring& country,const Qstring& mail);
+    //void setProfile(const Qstring& name, const Qstring& surname,bool sex,const QDate& date,const Residenza& adress,const Qstring& country,const Qstring& mail);
     
     //GET INFO FROM PROFILO
     const QString& getUsername() const;
@@ -33,8 +33,17 @@ public:
     const QDate &getData()const;
     QString getDataString()const;
     const QString& getNazione() const;
-    const Residenza& getResidenza()const;
+    
+    const Residenza& getResidenza() const;
+    const QString& getProf() const;
+    const QString& getNum() const;
     const QString& getMail()const;
+    
+    const Container<QString>& getDiary() const;
+    
+    const Container<QString>& getFollowers() const;
+    const Container<QString>& getFollowing() const;
+    const QString& getLevel() const;  
     
 
     virtual QString toString() const =0;
