@@ -17,3 +17,5 @@
 *.user
 *.swo
 
+
+.DS_Store
